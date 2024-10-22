@@ -6,7 +6,7 @@ import os
 def recommend_manga(manga_name):
     manga_index = st.session_state.manga[st.session_state.manga['title'] == manga_name].index[0]
     distances = st.session_state.manga_similarity[manga_index] #array
-    manga_list = sorted(list(enumerate(distances)),reverse=True, key = lambda x:x[1])[1:7] #gives manga index along with distance
+    manga_list = sorted(list(enumerate(distances)),reverse=True, key = lambda x:x[1])[1:46] #gives manga index along with distance
     recommendations = []
     recommendations_rating = []
     for i in manga_list:
@@ -17,7 +17,7 @@ def recommend_manga(manga_name):
 def recommend_anime(anime_name):
     anime_index = st.session_state.anime[st.session_state.anime['Name'] == anime_name].index[0]
     distances = st.session_state.anime_similarity[anime_index] #array
-    anime_list = sorted(list(enumerate(distances)),reverse=True, key = lambda x:x[1])[1:7] #gives anime index along with distance
+    anime_list = sorted(list(enumerate(distances)),reverse=True, key = lambda x:x[1])[1:46] #gives anime index along with distance
 
     recommendations = []
     recommendations_rating = []
@@ -56,7 +56,17 @@ if 'anime_similarity' not in st.session_state:
 
 
 
-
+def main_container(recommendations, rating, count):
+    row1 = st.columns(3)
+    row2 = st.columns(3)
+    row3 = st.columns(3)
+    for col in row1 + row2+ row3:
+        tile = col.container(height=240)
+        tile.text(count)
+        tile.link_button(recommendations[count-1], f"https://www.google.com/search?q={recommendations[count-1].replace(' ', '+')}")
+        tile.write(":blue[Rating :]")
+        tile.text(rating[count-1])
+        count+=1   
     
 on = st.toggle("Manga")
 
@@ -65,10 +75,10 @@ if on:
     st.title('Manga Recommender System')
     
     selected_manga = st.selectbox(
-    'Enter manga name',
-    st.session_state.manga['title'].values,
-    placeholder="manga name",
-    index = None
+        'Enter manga name',
+        st.session_state.manga['title'].values,
+        placeholder="manga name",
+        index = None
     )
     if st.button('Recommend'):
         st.write("\n")
@@ -79,20 +89,24 @@ if on:
             st.title(":red[Please select an manga!]")
         else:
             recommendations, rating = recommend_manga(selected_manga)
-            count = 1
-            row1 = st.columns(3)
-            row2 = st.columns(3)
-            for col in row1 + row2:
-                tile = col.container(height=240)
-                tile.text(count)
-                tile.link_button(recommendations[count-1], f"https://www.google.com/search?q={recommendations[count-1].replace(' ', '+')}")
-                tile.write(":blue[Rating :]")
-                tile.text(rating[count-1])
-                count+=1           
+            tab1, tab2, tab3, tab4, tab5 = st.tabs(["            1            ", "            2            ", "            3            ", "            4            ", "            5            "])
+            with tab1:
+                main_container(recommendations, rating, 1)  
+            with tab2:
+                main_container(recommendations, rating, 10)
+            with tab3:
+                main_container(recommendations, rating, 19)
+            with tab4:
+                main_container(recommendations, rating, 28)
+            with tab5:
+                main_container(recommendations, rating, 37)
+
+ 
+                        
 else:
     st.title('Anime Recommender System')
 
-    selected_anime = st.selectbox(
+    selected_anime = st.selectbox(          
         'Enter anime name',
         st.session_state.anime['Name'].values,
         placeholder="Anime name",
@@ -109,13 +123,16 @@ else:
             st.title(":red[Please select an anime!]")
         else:
             recommendations, rating = recommend_anime(selected_anime)
-            count = 1
-            row1 = st.columns(3)
-            row2 = st.columns(3)
-            for col in row1 + row2:
-                tile = col.container(height=240)
-                tile.text(count)
-                tile.link_button(recommendations[count-1], f"https://www.google.com/search?q={recommendations[count-1].replace(' ', '+')}")
-                tile.write(":blue[Rating :]")
-                tile.text(rating[count-1])
-                count+=1
+            tab1, tab2, tab3, tab4, tab5 = st.tabs(["            1            ", "            2            ", "            3            ", "            4            ", "            5            "])
+            with tab1:
+                main_container(recommendations, rating, 1)  
+            with tab2:
+                main_container(recommendations, rating, 10)
+            with tab3:
+                main_container(recommendations, rating, 19)
+            with tab4:
+                main_container(recommendations, rating, 28)
+            with tab5:
+                main_container(recommendations, rating, 37)
+
+                
