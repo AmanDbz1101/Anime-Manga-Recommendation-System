@@ -1,6 +1,6 @@
 # Anime-Manga-Recommendation-System
 This is the python based project on recommendation system which is based on content-based filtering. It uses streamlit library and it is also deployed using streamlit.
-
+##### Link to website is given https://otakuinfo.streamlit.app/. You can visit the website to try it.
 ## 1. Clone the repository
 
 Use the following command to clone this repository to your local machine:
