@@ -1,14 +1,14 @@
 # Anime-Manga-Recommendation-System
 This is the python based project on recommendation system which is based on content-based filtering. It uses streamlit library and it is also deployed using streamlit.
 
-## 1.Clone the repository
+## 1. Clone the repository
 
 Use the following command to clone this repository to your local machine:
 
 ```bash
 git clone https://github.com/AmanDbz1101/Anime-Manga-Recommendation-System.git
 ```
-## 2.Navigate to the Project Direcotry
+## 2. Navigate to the Project Direcotry
 
 ```bash
 cd Anime-Manga-Recommendation-System
