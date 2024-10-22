@@ -1,5 +1,5 @@
 # Anime-Manga-Recommendation-System
-This is the python based project of recommendation system which is based on content-based filtering. It uses streamlit library and it is also deployed using streamlit.
+This is the python based project on recommendation system which is based on content-based filtering. It uses streamlit library and it is also deployed using streamlit.
 
 ## 1.Clone the repository
 
